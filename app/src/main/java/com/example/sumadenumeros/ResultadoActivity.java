@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ResultadoActivity extends AppCompatActivity {
     
     TextView txtResultado;
-    @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
