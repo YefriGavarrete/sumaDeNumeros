@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">sumaDeNumeros</string>
+    <string name="btnSuma">Suma</string>
+    <string name="btnResta">Resta\n</string>
+    <string name="btnDivision">Division\n</string>
+    <string name="btnMultipliacion">Multiplicacion</string>
+</resources>
