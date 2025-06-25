@@ -2,17 +2,11 @@ package com.example.sumadenumeros;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 public class MainActivity extends AppCompatActivity {
     EditText num1, num2;
     Button btnSumar, btnRestar, btnMultiplicar, btnDivision;
@@ -30,16 +24,39 @@ public class MainActivity extends AppCompatActivity {
         btnMultiplicar = (Button) findViewById(R.id.btnMultiplicacion);
         btnDivision = (Button) findViewById(R.id.btnDivision);
 
-        btnSumar.setOnClickListener(v ->{
+
+        btnSumar.setOnClickListener(v -> operar("sumar"));
+        btnRestar.setOnClickListener(v -> operar("restar"));
+        btnMultiplicar.setOnClickListener(v -> operar("multiplicar"));
+        btnDivision.setOnClickListener(v -> operar("division"));
+
+
+
+
+    }
+        private void operar(String operacion){
+
             try{
                 double n1 = Double.parseDouble(num1.getText().toString());
                 double n2 = Double.parseDouble(num2.getText().toString());
+                double resultado = 0;
+                switch (operacion){
+                    case "sumar":
+                        resultado = Operaciones.sumar(n1, n2);
+                    break;
+                    case "restar":
+                        resultado = Operaciones.restar(n1, n2);
+                        break;
+                    case "multiplicar":
+                        resultado = Operaciones.multiplicacion(n1, n2);
+                        break;
+                    case "division":
+                         resultado = Operaciones.division(n1, n2);
+                         break;
 
-                double resultado = Operaciones.sumar(n1, n2);
-                Operaciones op = new Operaciones(resultado);
-
-                Intent intent = new Intent(MainActivity.this,Operaciones.class);
-                intent.putExtra("resultado",op.getResultado());
+                }
+                Intent intent = new Intent(MainActivity.this,ResultadoActivity.class);
+                intent.putExtra("resultado",resultado);
                 startActivity(intent);
 
 
@@ -48,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Ingrese valores válidos", Toast.LENGTH_SHORT).show();
 
             }
+            catch (IllegalAccessError e){
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
 
-
-
-        });
-    }
+        }
 }

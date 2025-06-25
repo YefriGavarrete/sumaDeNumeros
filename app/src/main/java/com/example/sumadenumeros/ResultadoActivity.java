@@ -11,14 +11,17 @@ public class ResultadoActivity extends AppCompatActivity {
     
     TextView txtResultado;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_resultado);
-        txtResultado = (TextView) findViewById(R.id.txtresult);
-        double valor = getIntent().getDoubleExtra("resultant", 0);
-        txtResultado.setText("Resultado:" + valor);
+
+        double resultado = getIntent().getDoubleExtra("resultado", 0);
+        Operaciones operaciones = new Operaciones(resultado);
+        txtResultado = (TextView) findViewById(R.id.txtResultado);
+        txtResultado.setText("Resultado" + operaciones.getResultado());
 
     }
 }
